@@ -2,13 +2,20 @@ import { useSelector } from "react-redux";
 import Contact from '../Contact/Contact'
 import { getContacts, getFilter } from "redux/selectors";
 
-
 const ContactList = () => {
     const contacts = useSelector(getContacts);
-    const filter = useSelector(getFilter);
+    const contactsFilter = useSelector(getFilter);
+
+    console.log("contacts:", contacts);
+    console.log("contactsFilter:", contactsFilter);
+
     const filteredContacts = contacts.filter(contact =>
-        contact.name.includes(filter)
+        contact.name.includes(contactsFilter)
     )
+
+    // const filteredContacts = contacts.filter(contact =>
+    //     contact.name.toLowerCase().includes(contactsFilter.toLowerCase())
+    // )
 
     return (
         <ul className="contact-list">
@@ -19,7 +26,6 @@ const ContactList = () => {
             ))}
         </ul>
     )
-
 };
 
 export default ContactList;
