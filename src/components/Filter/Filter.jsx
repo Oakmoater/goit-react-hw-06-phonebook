@@ -6,8 +6,7 @@ const Filter = () => {
     
     const filterSeter = (event) => {
         const inputValue = event.target.value;
-        dispatch(setStatusFilter(inputValue)); // Передача значення фільтру у дію
-        console.log(dispatch(setStatusFilter(inputValue)));
+        dispatch(setStatusFilter(inputValue));
     };
 
     return (

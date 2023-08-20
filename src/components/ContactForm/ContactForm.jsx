@@ -4,9 +4,7 @@ import { addContact } from "redux/contactsSlice";
 const ContactForm = () => {
     const dispatch = useDispatch();
 
-    const addNewContact = (name, number) => {
-        dispatch(addContact(name, number));
-    };
+    const addNewContact = (name, number) => dispatch(addContact(name, number));
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -19,6 +17,7 @@ const ContactForm = () => {
         addNewContact(name, number);
 
         // Очистити поля після додавання контакту
+        
         event.target.name.value = "";
         event.target.number.value = "";
     };
