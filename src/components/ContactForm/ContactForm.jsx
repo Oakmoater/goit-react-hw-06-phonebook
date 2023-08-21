@@ -1,23 +1,31 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addContact } from "redux/contactsSlice";
+import { getContacts } from "redux/selectors";
 
 const ContactForm = () => {
     const dispatch = useDispatch();
-
+    const contacts = useSelector(getContacts);
     const addNewContact = (name, number) => dispatch(addContact(name, number));
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // Отримуємо дані імені та номера зі стану форми
-        const name = event.target.name.value;
+        const name = event.target.name.value.trim();
         const number = event.target.number.value;
 
-        // Викликаємо функцію addNewContact з отриманими даними
+        if (name === "") {
+            alert("Name field cannot be empty");
+            return;
+        }
+
+        const existingContacts = contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase());
+        if (existingContacts) {
+            alert("Contact with the same name already exists")
+            return
+        }
+
         addNewContact(name, number);
 
-        // Очистити поля після додавання контакту
-        
         event.target.name.value = "";
         event.target.number.value = "";
     };

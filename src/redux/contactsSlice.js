@@ -20,7 +20,7 @@ const contactsSlice = createSlice({
         return {
           payload: {
             id: nanoid(),
-            name,
+            name: name.trim(),
             number,
           },
         };
